@@ -1,3 +1,15 @@
+¡Entendido, Federico! Menos es más. Vamos a simplificarlo para que la pantalla no se vea saturada y sea mucho más fácil de usar, dejando solo 2 espacios de complementos.
+
+He verificado los nombres exactos de tu lista de Excel para que coincidan perfectamente.
+
+Instrucciones para tu archivo index.html:
+Borra todo lo que tienes en el archivo actual en GitHub.
+
+Pega este código nuevo.
+
+Asegúrate de que tu imagen en GitHub se llame logo.jpg.
+
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,29 +38,29 @@
             padding: 25px;
             border-radius: 30px;
             box-shadow: 0 15px 35px rgba(173, 20, 87, 0.1);
-            max-width: 480px;
+            max-width: 450px;
             width: 100%;
             text-align: center;
             border: 1px solid rgba(197, 160, 89, 0.3);
         }
         .logo {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             object-fit: cover;
             border-radius: 50%;
             margin-bottom: 10px;
             border: 3px solid var(--rosa-medio);
         }
-        h2 { color: var(--rosa-fuerte); margin: 5px 0; font-weight: 300; letter-spacing: 1px; font-size: 1.5rem; }
-        .service-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; color: var(--rosa-fuerte); text-transform: uppercase; }
+        h2 { color: var(--rosa-fuerte); margin: 5px 0; font-weight: 300; letter-spacing: 1px; font-size: 1.4rem; }
+        .service-group { text-align: left; margin-bottom: 18px; }
+        label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; color: var(--rosa-fuerte); text-transform: uppercase; }
         select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1.5px solid var(--rosa-medio);
-            border-radius: 10px;
+            border-radius: 12px;
             background-color: #fff;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--texto);
         }
         .total-box {
@@ -58,135 +70,115 @@
             border-radius: 20px;
             border: 2px solid var(--dorado);
         }
-        .total-amount { font-size: 2rem; font-weight: bold; color: var(--rosa-fuerte); margin-top: 5px; }
-        .disclaimer { font-size: 0.7rem; color: #999; margin-top: 15px; line-height: 1.2; text-align: justify; }
+        .total-amount { font-size: 2.2rem; font-weight: bold; color: var(--rosa-fuerte); margin-top: 5px; }
+        .disclaimer { font-size: 0.75rem; color: #888; margin-top: 15px; line-height: 1.3; text-align: center; font-style: italic; }
         .btn-whatsapp {
             display: block;
             margin-top: 15px;
             background-color: #25d366;
             color: white;
-            padding: 14px;
+            padding: 16px;
             text-decoration: none;
-            border-radius: 12px;
+            border-radius: 15px;
             font-weight: bold;
+            font-size: 1.1rem;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <img src="logo.jpg" alt="Dulce Nails Logo" class="logo">
+    <img src="logo.jpg" alt="Dulce Nails" class="logo">
     
-    <h2>Cotizador Dulce Nails</h2>
+    <h2>Cotizador de Servicios</h2>
 
     <div class="service-group">
-        <label>1. Manos: Base o Técnica</label>
-        <select id="base" onchange="calcular()">
+        <label>1. Servicio de Manos</label>
+        <select id="manos" onchange="calcular()">
             <option value="0" data-desc="">Selecciona una opción...</option>
-            <option value="200" data-desc="Rubber">Aplicación Rubber (Inc. 1 color) - $200</option>
-            <option value="200" data-desc="Calcio">Calcio Cristal (Inc. 1 color) - $200</option>
-            <option value="150" data-desc="Gel Semi">Gel Semipermanente (1-2 tonos) - $150</option>
-            <option value="200" data-desc="Acrílico T2">Acrílico Tip (Hasta #2) - $200</option>
-            <option value="250" data-desc="Escultural T2">Acrílico Escultural (Hasta #2) - $250</option>
-            <option value="250" data-desc="Acrílico T3">Acrílico Tip (#3) - $250</option>
-            <option value="300" data-desc="Escultural T3">Acrílico Escultural (#3) - $300</option>
-            <option value="300" data-desc="Acrílico T4">Acrílico Tip (#4) - $300</option>
-            <option value="350" data-desc="Escultural T4">Acrílico Escultural (#4) - $350</option>
-            <option value="350" data-desc="Acrílico T5">Acrílico Tip (#5) - $350</option>
-            <option value="400" data-desc="Escultural T5">Acrílico Escultural (#5) - $400</option>
+            <option value="200" data-desc="Aplicación Rubber">Aplicación Rubber - $200</option>
+            <option value="200" data-desc="Calcio Cristal">Calcio cristal - $200</option>
+            <option value="150" data-desc="Gel Semipermanente">Gel semipermanente - $150</option>
+            <option value="200" data-desc="Acrílico Tip #2">Acrílico con tip (Hasta #2) - $200</option>
+            <option value="250" data-desc="Escultural #2">Acrílico escultural (Hasta #2) - $250</option>
+            <option value="250" data-desc="Acrílico Tip #3">Acrílico con tip (#3) - $250</option>
+            <option value="300" data-desc="Escultural #3">Acrílico escultural (#3) - $300</option>
+            <option value="300" data-desc="Acrílico Tip #4">Acrílico con tip (#4) - $300</option>
+            <option value="350" data-desc="Escultural #4">Acrílico escultural (#4) - $350</option>
+            <option value="350" data-desc="Acrílico Tip #5">Acrílico con tip (#5) - $350</option>
+            <option value="400" data-desc="Escultural #5">Acrílico escultural (#5) - $400</option>
         </select>
     </div>
 
     <div class="service-group">
-        <label>2. Pies</label>
+        <label>2. Servicio de Pies</label>
         <select id="pies" onchange="calcular()">
             <option value="0" data-desc="">Sin servicio de pies</option>
-            <option value="150" data-desc="Gel Pies">Gel en pies (1 tono) - $150</option>
-            <option value="250" data-desc="Pedicure">Pedicure (Inc. 1 color) - $250</option>
-            <option value="400" data-desc="Spa Pedi">Spa Pedicure (Completo) - $400</option>
+            <option value="150" data-desc="Gel en pies">Gel en pies - $150</option>
+            <option value="250" data-desc="Pedicure">Pedicure - $250</option>
+            <option value="400" data-desc="Spa Pedicure">Spa pedicure - $400</option>
         </select>
     </div>
 
     <div class="service-group">
-        <label>3. Complementos (Espacio 1)</label>
+        <label>3. Complemento / Spa A</label>
         <select id="extra1" onchange="calcular()">
             <option value="0" data-desc="">Ninguno</option>
-            <option value="100" data-desc="Mani Rusa">Manicura Rusa - $100</option>
-            <option value="250" data-desc="Spa Mani">Spa Manicure - $250</option>
-            <option value="100" data-desc="Diseño">Diseño Sencillo - $100</option>
-            <option value="100" data-desc="Retiro">Retiro de material - $100</option>
-            <option value="150" data-desc="Retoque Acri">Retoque Acrílico - $150</option>
+            <option value="100" data-desc="Manicura Rusa">Manicura rusa - $100</option>
+            <option value="250" data-desc="Spa Manicure">Spa manicure - $250</option>
+            <option value="100" data-desc="Diseño Sencillo">Diseño sencillo - $100</option>
+            <option value="100" data-desc="Retiro">Retiro - $100</option>
+            <option value="150" data-desc="Retoque Acrílico">Retoque acrílico - $150</option>
             <option value="100" data-desc="Retoque Gel">Retoque Gel - $100</option>
         </select>
     </div>
 
     <div class="service-group">
-        <label>4. Complementos (Espacio 2)</label>
+        <label>4. Complemento / Spa B</label>
         <select id="extra2" onchange="calcular()">
             <option value="0" data-desc="">Ninguno</option>
-            <option value="100" data-desc="Mani Rusa">Manicura Rusa - $100</option>
-            <option value="250" data-desc="Spa Mani">Spa Manicure - $250</option>
-            <option value="100" data-desc="Diseño">Diseño Sencillo - $100</option>
-            <option value="100" data-desc="Retiro">Retiro de material - $100</option>
-        </select>
-    </div>
-
-    <div class="service-group">
-        <label>5. Complementos (Espacio 3)</label>
-        <select id="extra3" onchange="calcular()">
-            <option value="0" data-desc="">Ninguno</option>
-            <option value="100" data-desc="Mani Rusa">Manicura Rusa - $100</option>
-            <option value="250" data-desc="Spa Mani">Spa Manicure - $250</option>
-            <option value="100" data-desc="Diseño">Diseño Sencillo - $100</option>
-            <option value="100" data-desc="Retiro">Retiro de material - $100</option>
-        </select>
-    </div>
-
-    <div class="service-group">
-        <label>6. Complementos (Espacio 4)</label>
-        <select id="extra4" onchange="calcular()">
-            <option value="0" data-desc="">Ninguno</option>
-            <option value="100" data-desc="Mani Rusa">Manicura Rusa - $100</option>
-            <option value="250" data-desc="Spa Mani">Spa Manicure - $250</option>
-            <option value="100" data-desc="Diseño">Diseño Sencillo - $100</option>
-            <option value="100" data-desc="Retiro">Retiro de material - $100</option>
+            <option value="100" data-desc="Manicura Rusa">Manicura rusa - $100</option>
+            <option value="250" data-desc="Spa Manicure">Spa manicure - $250</option>
+            <option value="100" data-desc="Diseño Sencillo">Diseño sencillo - $100</option>
+            <option value="100" data-desc="Retiro">Retiro - $100</option>
         </select>
     </div>
 
     <div class="total-box">
-        <div style="font-size: 0.8rem; color: var(--dorado); font-weight: bold;">TOTAL ESTIMADO</div>
+        <div style="font-size: 0.8rem; color: var(--dorado); font-weight: bold; letter-spacing: 1px;">TOTAL ESTIMADO</div>
         <div class="total-amount" id="total">$0.00</div>
     </div>
 
     <div class="disclaimer">
-        * No se sacan uñas enterradas. Por higiene, no se atienden uñas con hongos o pie diabético. Retiro de gel se cobra aparte en servicios de pies.
+        * No se sacan uñas enterradas. Por higiene, no se atienden uñas con hongos o pie diabético.
     </div>
 
-    <a href="#" id="btnWsp" class="btn-whatsapp" target="_blank">Enviar a WhatsApp</a>
+    <a href="#" id="btnWsp" class="btn-whatsapp" target="_blank">Agendar cita por WhatsApp</a>
 </div>
 
 <script>
     function calcular() {
-        const ids = ['base', 'pies', 'extra1', 'extra2', 'extra3', 'extra4'];
+        const ids = ['manos', 'pies', 'extra1', 'extra2'];
         let total = 0;
-        let servicios = [];
+        let seleccionados = [];
 
         ids.forEach(id => {
-            const select = document.getElementById(id);
-            const precio = parseInt(select.value);
-            const texto = select.options[select.selectedIndex].getAttribute('data-desc');
+            const el = document.getElementById(id);
+            const precio = parseInt(el.value);
+            const nombre = el.options[el.selectedIndex].getAttribute('data-desc');
             
             if (precio > 0) {
                 total += precio;
-                servicios.push(texto);
+                seleccionados.push(nombre);
             }
         });
 
         document.getElementById('total').innerText = "$" + total + ".00";
         
-        const numWA = "5215500000000"; // CAMBIA ESTO POR EL TEL DE DULCE
-        const msj = encodeURIComponent("¡Hola Dulce! 💅 Cotización: " + servicios.join(", ") + ". Total: $" + total);
-        document.getElementById('btnWsp').href = "https://wa.me/" + numWA + "?text=" + msj;
+        // Reemplaza las X con el número de Dulce (ej: 5215512345678)
+        const telefono = "5521969219"; 
+        const mensaje = encodeURIComponent("¡Hola Dulce! 💅 Me interesa: " + seleccionados.join(" + ") + ". Mi total estimado es de $" + total);
+        document.getElementById('btnWsp').href = "https://wa.me/" + telefono + "?text=" + mensaje;
     }
 </script>
 
