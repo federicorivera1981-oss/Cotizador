@@ -92,7 +92,6 @@
 
         #contenido-calculadora { display: none; }
 
-        /* Estilo del Aviso de Tonos */
         .color-disclaimer {
             background-color: #FDFCF9;
             padding: 15px;
@@ -144,6 +143,15 @@
         .checkbox-label { flex-grow: 1; font-size: 0.85rem; font-weight: 300; }
         .checkbox-price { font-size: 0.85rem; font-weight: 600; }
 
+        .disclaimer { 
+            font-size: 0.65rem; 
+            color: #aaa; 
+            margin-top: 20px; 
+            line-height: 1.4; 
+            text-align: justify; 
+            font-weight: 300;
+        }
+
         .resumen-box {
             margin-top: 30px;
             text-align: left;
@@ -175,7 +183,7 @@
             font-weight: 600;
         }
         
-        .footer-note { font-size: 0.6rem; color: #aaa; margin-top: 20px; text-align: center; }
+        .footer-note { font-size: 0.6rem; color: #ccc; margin-top: 20px; text-align: center; }
     </style>
 </head>
 <body>
@@ -254,6 +262,10 @@
                 <label class="checkbox-item"><input type="checkbox" class="extra" value="250" data-desc="Pedicure" onchange="ejecutarCalculo()"><span class="checkbox-label">Pedicure</span><span class="checkbox-price">$250</span></label>
                 <label class="checkbox-item"><input type="checkbox" class="extra" value="400" data-desc="Spa Pedi" onchange="ejecutarCalculo()"><span class="checkbox-label">Spa Pedicure</span><span class="checkbox-price">$400</span></label>
             </div>
+        </div>
+
+        <div class="disclaimer">
+            * Por higiene, no se atienden uñas con hongos o diabéticos. Retiro de gel en pies se cobra aparte. No se sacan uñas enterradas.
         </div>
 
         <div class="resumen-box" id="resumen-ui" style="display:none;">
