@@ -28,31 +28,52 @@
             width: 100%;
             text-align: center;
         }
-        .logo {
-            max-width: 150px;
-            margin-bottom: 20px;
-            border-radius: 50%;
-        }
-        h2 { color: var(--rosa-fuerte); margin-bottom: 5px; }
-        p.subtitle { font-size: 0.9em; margin-bottom: 25px; color: #888; }
+        .logo { max-width: 130px; margin-bottom: 15px; border-radius: 50%; border: 2px solid var(--rosa-suave); }
+        h2 { color: var(--rosa-fuerte); margin-bottom: 5px; font-size: 1.5rem; }
         
-        .service-group {
-            text-align: left;
-            margin-bottom: 20px;
+        /* Estilo de los Botones de Selección Inicial (Cards) */
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+            margin-top: 10px;
         }
+        .radio-card {
+            flex: 1;
+            cursor: pointer;
+        }
+        .radio-card input { display: none; }
+        .card-content {
+            border: 2px solid #eee;
+            padding: 15px;
+            border-radius: 15px;
+            transition: 0.3s;
+            font-weight: bold;
+            color: #888;
+            background: #fafafa;
+        }
+        .radio-card input:checked + .card-content {
+            border-color: var(--rosa-fuerte);
+            color: var(--rosa-fuerte);
+            background: #fff5f8;
+            box-shadow: 0 5px 15px rgba(240, 98, 146, 0.2);
+        }
+
+        .service-group { text-align: left; margin-bottom: 20px; }
         label.group-title {
             display: block;
             font-weight: bold;
             margin-bottom: 8px;
             color: var(--rosa-fuerte);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
         }
         select {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 10px;
+            border-radius: 12px;
             background-color: #fafafa;
         }
 
@@ -70,40 +91,30 @@
             cursor: pointer;
         }
         .checkbox-item:last-child { border-bottom: none; }
-        .checkbox-item input {
-            margin-right: 12px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--rosa-fuerte);
-        }
+        .checkbox-item input { margin-right: 12px; width: 18px; height: 18px; accent-color: var(--rosa-fuerte); }
         .checkbox-label { flex-grow: 1; font-size: 0.9rem; }
         .checkbox-price { font-weight: bold; color: var(--rosa-fuerte); font-size: 0.9rem; }
 
-        .total-box {
+        /* Resumen Visual */
+        .resumen-box {
             margin-top: 25px;
+            text-align: left;
+            background: #fdfdfd;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid var(--dorado);
+        }
+        .resumen-title { font-weight: bold; color: var(--dorado); margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        #lista-resumen { padding-left: 20px; margin: 0; font-size: 0.9rem; line-height: 1.5; }
+
+        .total-box {
+            margin-top: 20px;
             padding: 20px;
             background: var(--rosa-suave);
             border-radius: 15px;
             border: 2px dashed var(--rosa-fuerte);
         }
-        .total-amount {
-            font-size: 2.2em;
-            font-weight: bold;
-            color: var(--rosa-fuerte);
-        }
-
-        /* Sección de Resumen */
-        .resumen-box {
-            margin-top: 20px;
-            text-align: left;
-            font-size: 0.85rem;
-            background: #fdfdfd;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #eee;
-        }
-        .resumen-title { font-weight: bold; color: var(--dorado); margin-bottom: 5px; }
-        #lista-resumen { padding-left: 20px; margin: 0; }
+        .total-amount { font-size: 2.2em; font-weight: bold; color: var(--rosa-fuerte); }
 
         .btn-whatsapp {
             display: block;
@@ -112,13 +123,11 @@
             color: white;
             padding: 15px;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: bold;
         }
         
-        /* Ocultar contenido inicialmente */
         #contenido-calculadora { display: none; }
-        
         .disclaimer { font-size: 0.7rem; color: #999; margin-top: 15px; text-align: justify; line-height: 1.3; }
     </style>
 </head>
@@ -126,141 +135,21 @@
 
 <div class="container">
     <img src="logo.png" alt="Logo Dulce Nails" class="logo">
-    <h2>Cotizador Beautiful Nails</h2>
-    <p class="subtitle">Personaliza tu servicio</p>
+    <h2>Cotizador Online</h2>
+    <p style="font-size: 0.9em; color: #888;">Paso 1: ¿Qué realizaremos hoy?</p>
 
-    <div class="service-group">
-        <label class="group-title">¿Qué servicio necesitas?</label>
-        <select id="tipo-servicio" onchange="mostrarContenido()">
-            <option value="">Selecciona una opción...</option>
-            <option value="Nueva">Aplicación Nueva</option>
-            <option value="Retoque">Retoque</option>
-        </select>
+    <div class="radio-group">
+        <label class="radio-card">
+            <input type="radio" name="tipo" value="Aplicación Nueva" onchange="mostrarContenido()">
+            <div class="card-content">✨ Aplicación<br>Nueva</div>
+        </label>
+        <label class="radio-card">
+            <input type="radio" name="tipo" value="Retoque" onchange="mostrarContenido()">
+            <div class="card-content">💅 Solo<br>Retoque</div>
+        </label>
     </div>
 
     <div id="contenido-calculadora">
         <div class="service-group">
-            <label class="group-title">Base y Esmaltado</label>
+            <label class="group-title">Base y Técnica</label>
             <select id="base" onchange="calcular()">
-                <option value="0" data-desc="">Selecciona una opción...</option>
-                <option value="200" data-desc="Aplicación Rubber">Aplicación Rubber - $200</option>
-                <option value="200" data-desc="Calcio Cristal">Calcio Cristal - $200</option>
-                <option value="150" data-desc="Gel Semipermanente">Gel Semipermanente - $150</option>
-            </select>
-        </div>
-
-        <div class="service-group">
-            <label class="group-title">Largo de Extensión</label>
-            <select id="acrilico" onchange="calcular()">
-                <option value="0" data-desc="">Sin extensión (Uña natural)</option>
-                <option value="200" data-desc="Acrílico Tip #2">Acrílico con Tip (Hasta #2) - $200</option>
-                <option value="250" data-desc="Escultural #2">Escultural (Hasta #2) - $250</option>
-                <option value="250" data-desc="Acrílico Tip #3">Acrílico con Tip (#3) - $250</option>
-                <option value="300" data-desc="Escultural #3">Escultural (#3) - $300</option>
-                <option value="300" data-desc="Acrílico Tip #4">Acrílico con Tip (#4) - $300</option>
-                <option value="350" data-desc="Escultural #4">Escultural (#4) - $350</option>
-                <option value="350" data-desc="Acrílico Tip #5">Acrílico con Tip (#5) - $350</option>
-                <option value="400" data-desc="Escultural #5">Escultural (#5) - $400</option>
-            </select>
-        </div>
-
-        <div class="service-group">
-            <label class="group-title">Complementos y Spa</label>
-            <div class="checkbox-container">
-                <label class="checkbox-item"><input type="checkbox" class="comp-item" value="100" data-desc="Manicura Rusa" onchange="calcular()"><span class="checkbox-label">Manicura Rusa</span><span class="checkbox-price">$100</span></label>
-                <label class="checkbox-item"><input type="checkbox" class="comp-item" value="250" data-desc="Spa Manicure" onchange="calcular()"><span class="checkbox-label">Spa Manicure</span><span class="checkbox-price">$250</span></label>
-                <label class="checkbox-item"><input type="checkbox" class="comp-item" value="100" data-desc="Diseño Sencillo" onchange="calcular()"><span class="checkbox-label">Diseño Sencillo</span><span class="checkbox-price">$100</span></label>
-                <label class="checkbox-item"><input type="checkbox" class="comp-item" value="100" data-desc="Retiro" onchange="calcular()"><span class="checkbox-label">Retiro de material</span><span class="checkbox-price">$100</span></label>
-                <label class="checkbox-item"><input type="checkbox" class="comp-item" value="150" data-desc="Retoque Acrílico" onchange="calcular()"><span class="checkbox-label">Retoque Acrílico</span><span class="checkbox-price">$150</span></label>
-                <label class="checkbox-item"><input type="checkbox" class="comp-item" value="100" data-desc="Retoque Gel" onchange="calcular()"><span class="checkbox-label">Retoque Gel</span><span class="checkbox-price">$100</span></label>
-            </div>
-        </div>
-
-        <div class="service-group">
-            <label class="group-title">Servicio de Pies</label>
-            <div class="checkbox-container">
-                <label class="checkbox-item"><input type="checkbox" class="pies-item" value="150" data-desc="Gel en pies" onchange="calcular()"><span class="checkbox-label">Gel en pies</span><span class="checkbox-price">$150</span></label>
-                <label class="checkbox-item"><input type="checkbox" class="pies-item" value="250" data-desc="Pedicure" onchange="calcular()"><span class="checkbox-label">Pedicure</span><span class="checkbox-price">$250</span></label>
-                <label class="checkbox-item"><input type="checkbox" class="pies-item" value="400" data-desc="Spa Pedicure" onchange="calcular()"><span class="checkbox-label">Spa Pedicure</span><span class="checkbox-price">$400</span></label>
-            </div>
-        </div>
-        
-        <div class="resumen-box" id="resumen-visible" style="display:none;">
-            <div class="resumen-title">Tu Resumen:</div>
-            <ul id="lista-resumen"></ul>
-        </div>
-
-        <div class="total-box">
-            <div>Total Estimado:</div>
-            <div class="total-amount" id="total">$0.00</div>
-        </div>
-
-        <div class="disclaimer">
-            * No se sacan uñas enterradas. Por higiene, no se atienden uñas con hongos o pie diabético. Retiro de gel en pies se cobra aparte.
-        </div>
-
-        <a href="#" id="btnWsp" class="btn-whatsapp" target="_blank">Agendar por WhatsApp</a>
-    </div>
-</div>
-
-<script>
-    function mostrarContenido() {
-        const seleccion = document.getElementById('tipo-servicio').value;
-        const contenido = document.getElementById('contenido-calculadora');
-        if (seleccion !== "") {
-            contenido.style.display = "block";
-            calcular(); // Para incluir el tipo de servicio en el resumen inicial
-        } else {
-            contenido.style.display = "none";
-        }
-    }
-
-    function calcular() {
-        let total = 0;
-        let seleccion = [];
-        const tipoServicio = document.getElementById('tipo-servicio').value;
-        
-        if(tipoServicio) seleccion.push("Servicio: " + tipoServicio);
-
-        // 1. Sumar Selects
-        ['base', 'acrilico'].forEach(id => {
-            const el = document.getElementById(id);
-            const val = parseInt(el.value);
-            if (val > 0) {
-                total += val;
-                seleccion.push(el.options[el.selectedIndex].getAttribute('data-desc'));
-            }
-        });
-
-        // 2. Sumar Checkboxes
-        document.querySelectorAll('.pies-item:checked, .comp-item:checked').forEach(cb => {
-            total += parseInt(cb.value);
-            seleccion.push(cb.getAttribute('data-desc'));
-        });
-
-        // Actualizar pantalla de total
-        document.getElementById('total').innerText = "$" + total + ".00";
-
-        // Actualizar Lista de Resumen Visible
-        const listaUI = document.getElementById('lista-resumen');
-        const resumenBox = document.getElementById('resumen-visible');
-        listaUI.innerHTML = "";
-        
-        if (seleccion.length > 0) {
-            resumenBox.style.display = "block";
-            seleccion.forEach(item => {
-                let li = document.createElement('li');
-                li.textContent = item;
-                listaUI.appendChild(li);
-            });
-        }
-
-        // Configurar Link de WhatsApp
-        const telefono = "5215521969219"; 
-        const msj = encodeURIComponent("¡Hola Dulce! 💅 Mi cotización es: " + seleccion.join(", ") + ". Total estimado: $" + total);
-        document.getElementById('btnWsp').href = "https://wa.me/" + telefono + "?text=" + msj;
-    }
-</script>
-
-</body>
-</html>
