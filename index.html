@@ -92,28 +92,20 @@
 
         #contenido-calculadora { display: none; }
 
-        /* Estilo del Disclaimer Prioritario */
-        .health-disclaimer {
-            background-color: #F4F1EA;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-left: 3px solid var(--dorado-acento);
-            text-align: left;
+        /* Estilo del Aviso de Tonos */
+        .color-disclaimer {
+            background-color: #FDFCF9;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px dashed var(--dorado-acento);
+            text-align: center;
         }
-        .health-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .health-text {
-            font-size: 0.75rem;
+        .color-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
             line-height: 1.5;
-            font-weight: 300;
-            font-style: italic;
+            font-weight: 400;
+            color: var(--cafe-texto);
         }
 
         .service-group { text-align: left; margin-bottom: 25px; }
@@ -183,7 +175,7 @@
             font-weight: 600;
         }
         
-        .footer-note { font-size: 0.65rem; color: #aaa; margin-top: 20px; line-height: 1.4; text-align: center; }
+        .footer-note { font-size: 0.6rem; color: #aaa; margin-top: 20px; text-align: center; }
     </style>
 </head>
 <body>
@@ -192,7 +184,7 @@
     <img src="logo.png" alt="Logo" class="logo">
     
     <h2>Beautiful Nails</h2>
-    <span class="step-label">Presupuesto Online</span>
+    <span class="step-label">Cotizador de Servicios</span>
 
     <div class="radio-group">
         <label class="radio-card">
@@ -213,10 +205,10 @@
 
     <div id="contenido-calculadora">
         
-        <div class="health-disclaimer">
-            <span class="health-title">Protocolo de Salud</span>
-            <p class="health-text">
-                Por tu bienestar y seguridad, no realizamos procedimientos en uñas con micosis (hongos), uñas enterradas o en pacientes con pie diabético. Agradecemos tu comprensión.
+        <div class="color-disclaimer">
+            <p class="color-text">
+                Nuestra aplicación base incluye <strong>dos tonos lisos</strong> a elegir. <br>
+                Cualquier diseño o efecto adicional tendrá un costo extra.
             </p>
         </div>
 
@@ -265,7 +257,7 @@
         </div>
 
         <div class="resumen-box" id="resumen-ui" style="display:none;">
-            <div class="resumen-title">Tu Cotización:</div>
+            <div class="resumen-title">Tu Selección:</div>
             <ul id="lista-resumen"></ul>
         </div>
 
