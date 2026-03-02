@@ -35,7 +35,16 @@
             border: 1px solid var(--borde);
         }
 
-        .logo { max-width: 110px; margin-bottom: 20px; }
+        /* LOGO OVALADO HORIZONTAL */
+        .logo { 
+            width: 180px;         /* Más ancho */
+            height: 100px;        /* Menos alto */
+            object-fit: cover;    /* Evita que se deforme la imagen interna */
+            border-radius: 50%;   /* Crea la forma ovalada */
+            margin-bottom: 20px; 
+            border: 1px solid var(--borde);
+            display: inline-block;
+        }
 
         h2 { 
             font-family: 'Playfair Display', serif; 
@@ -54,7 +63,6 @@
             display: block;
         }
         
-        /* Botones de Selección Inicial con Emojis */
         .radio-group {
             display: flex;
             gap: 12px;
@@ -159,6 +167,7 @@
 
 <div class="container">
     <img src="logo.png" alt="Logo" class="logo">
+    
     <h2>Beautiful Nails</h2>
     <span class="step-label">¿Qué realizaremos hoy?</span>
 
@@ -180,7 +189,6 @@
     </div>
 
     <div id="contenido-calculadora">
-        
         <div class="service-group">
             <label class="group-title">Técnica base</label>
             <select id="base" onchange="ejecutarCalculo()">
@@ -253,13 +261,11 @@
         let total = 0;
         let lista = [];
 
-        // 1. Tipo de Servicio
         const radioChecked = document.querySelector('input[name="tipo"]:checked');
         if(radioChecked) {
             lista.push("Servicio: " + radioChecked.value);
         }
 
-        // 2. Selectores
         ['base', 'largo'].forEach(id => {
             const el = document.getElementById(id);
             const val = parseInt(el.value);
@@ -269,7 +275,6 @@
             }
         });
 
-        // 3. Checkboxes
         const checks = document.querySelectorAll('.extra:checked');
         checks.forEach(c => {
             total += parseInt(c.value);
