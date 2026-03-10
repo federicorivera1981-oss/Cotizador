@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador - Beautiful Nails</title>
+    <title>Cotizador - Nails by Dul</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,44 +15,45 @@
         }
 
         body { font-family: 'Montserrat', sans-serif; background-color: var(--beige-fondo); color: var(--cafe-texto); margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { background: var(--crema-card); padding: 40px 25px; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); max-width: 450px; width: 100%; text-align: center; border: 1px solid var(--borde); }
+        .container { background: var(--crema-card); padding: 40px 25px; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); max-width: 480px; width: 100%; text-align: center; border: 1px solid var(--borde); }
         .logo { width: 180px; height: 100px; object-fit: cover; border-radius: 100px; margin-bottom: 20px; border: 1px solid var(--borde); display: inline-block; }
         
-        h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 5px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 5px; letter-spacing: 1px; }
         .step-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--dorado-acento); margin-bottom: 25px; display: block; }
         
-        /* Botones Iniciales */
+        /* Paso 1: Botones */
         .radio-group { display: flex; gap: 12px; justify-content: center; margin-bottom: 35px; }
         .radio-card { flex: 1; cursor: pointer; }
         .radio-card input { display: none; }
-        .card-content { border: 1px solid var(--borde); padding: 20px 5px; transition: 0.3s; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; }
+        .card-content { border: 1px solid var(--borde); padding: 20px 5px; transition: 0.3s; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; line-height: 1.5; }
+        .emoji-icon { display: block; font-size: 1.5rem; margin-bottom: 8px; }
         .radio-card input:checked + .card-content { background: var(--cafe-texto); color: white; border-color: var(--cafe-texto); }
 
         #contenido-calculadora { display: none; }
 
-        /* Estética de Condiciones (Tooltips sutiles) */
-        .info-nota { font-size: 0.65rem; color: var(--dorado-acento); cursor: help; margin-left: 5px; font-style: italic; }
-
         .service-group { text-align: left; margin-bottom: 25px; }
-        label.group-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; margin-bottom: 8px; display: block; }
+        label.group-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; }
+        
+        /* Tooltip minimalista para condiciones */
+        .info-icon { font-size: 0.7rem; color: var(--dorado-acento); border: 1px solid var(--dorado-acento); border-radius: 50%; width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; margin-left: 8px; cursor: help; font-style: normal; }
+        .info-icon:hover::after { content: attr(data-info); position: absolute; background: var(--cafe-texto); color: white; padding: 10px; border-radius: 4px; font-size: 0.7rem; width: 200px; font-family: 'Montserrat'; font-style: normal; z-index: 10; margin-top: -60px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-        select { width: 100%; padding: 12px; border: 1px solid var(--borde); background-color: var(--beige-fondo); font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: var(--cafe-texto); appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%234A443F%22%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+        select, .qty-select { width: 100%; padding: 12px; border: 1px solid var(--borde); background-color: var(--beige-fondo); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: var(--cafe-texto); appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%234A443F%22%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
 
-        .checkbox-container { border-top: 1px solid var(--borde); }
+        /* Decorado por uña */
+        .decorado-item { display: grid; grid-template-columns: 1fr 80px; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--borde); }
+        .decorado-label { font-size: 0.8rem; }
+        .qty-select { padding: 5px; font-size: 0.75rem; width: 70px; background-position: right 5px center; }
+
         .checkbox-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--borde); cursor: pointer; }
         .checkbox-item input { margin-right: 15px; accent-color: var(--cafe-texto); }
-        .checkbox-label { flex-grow: 1; font-size: 0.85rem; font-weight: 300; }
-        .checkbox-price { font-size: 0.85rem; font-weight: 600; }
 
-        /* Caja de Totales y Tiempo */
-        .results-box { margin-top: 25px; padding: 25px 0; border-top: 1px solid var(--cafe-texto); border-bottom: 1px solid var(--borde); }
-        .total-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; display: block; }
-        .total-amount { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 10px; }
-        .time-estimate { font-size: 0.8rem; color: var(--dorado-acento); font-style: italic; }
+        .results-box { margin-top: 25px; padding: 25px 0; border-top: 1px solid var(--cafe-texto); }
+        .total-amount { font-family: 'Playfair Display', serif; font-size: 2.8rem; }
+        .time-estimate { font-size: 0.8rem; color: var(--dorado-acento); font-style: italic; margin-top: 5px; }
 
         .btn-whatsapp { display: block; margin-top: 25px; background-color: var(--cafe-texto); color: white; padding: 20px; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
-        
-        .footer-disclaimer { font-size: 0.6rem; color: #aaa; margin-top: 20px; line-height: 1.4; text-align: justify; }
+        .footer-note { font-size: 0.6rem; color: #aaa; margin-top: 20px; line-height: 1.4; text-align: justify; }
     </style>
 </head>
 <body>
@@ -60,97 +61,37 @@
 <div class="container">
     <img src="logo.png" alt="Logo" class="logo">
     <h2>Beautiful Nails</h2>
-    <span class="step-label">Cotizador & Tiempos</span>
+    <span class="step-label">Cotizador Premium</span>
 
     <div class="radio-group">
         <label class="radio-card">
             <input type="radio" name="tipo" value="Aplicación Nueva" onclick="activarCalculadora()">
-            <div class="card-content">✨ Nueva Aplicación</div>
+            <div class="card-content"><span class="emoji-icon">&#10024;</span>Nueva Aplicación</div>
         </label>
         <label class="radio-card">
             <input type="radio" name="tipo" value="Retoque" onclick="activarCalculadora()">
-            <div class="card-content">💅 Solo Retoque</div>
+            <div class="card-content"><span class="emoji-icon">&#128133;</span>Solo Retoque</div>
         </label>
     </div>
 
     <div id="contenido-calculadora">
         <div class="service-group">
-            <label class="group-title">Técnica base <span class="info-nota" title="Incluye 1 color liso o decoración sencilla (no francés)">ⓘ info</span></label>
-            <select id="base" onchange="ejecutarCalculo()">
-                <option value="0" data-time="0" data-desc="">Seleccionar...</option>
-                <option value="200" data-time="60" data-desc="Rubber">Rubber - $200 (60 min)</option>
-                <option value="100" data-time="40" data-desc="Calcio Cristal">Calcio Cristal - $100 (40 min)</option>
-                <option value="150" data-time="60" data-desc="Gel Semipermanente">Gel Semipermanente - $150 (60 min)</option>
-            </select>
-        </div>
+            <label class="group-title">Técnica Principal <i class="info-icon" data-info="Incluye 1 color liso o decoración sencilla (no francés).">i</i></label>
+            <select id="tecnica" onchange="ejecutarCalculo()">
+                <option value="0" data-time="0">Seleccionar...</option>
+                <optgroup label="Geles">
+                    <option value="200" data-time="60">Rubber - $200</option>
+                    <option value="100" data-time="40">Calcio Cristal - $100</option>
+                    <option value="150" data-time="60">Gel Semipermanente Manos - $150</option>
+                    <option value="150" data-time="60">Gel Semipermanente Pies - $150</option>
+                </optgroup>
+                <optgroup label="Acrílico con TIP">
+                    <option value="200" data-time="90">Tip hasta #2 - $200</option>
+                    <option value="250" data-time="100">Tip #3 - $250</option>
+                    <option value="300" data-time="110">Tip #4 - $300</option>
+                    <option value="350" data-time="120">Tip #5 - $350</option>
+                    <option value="400" data-time="130">Tip #6+ - $400</option>
+                </optgroup>
+                <optgroup label="Acrílico Escultural">
+                    <option value="250" data-
 
-        <div class="service-group">
-            <label class="group-title">Largo / Extensión</label>
-            <select id="largo" onchange="ejecutarCalculo()">
-                <option value="0" data-time="0" data-desc="">Uña natural</option>
-                <option value="200" data-time="20" data-desc="Tip #2">Acrílico Tip (Hasta #2) - +$200</option>
-                <option value="250" data-time="30" data-desc="Escultural #2">Escultural (Hasta #2) - +$250</option>
-            </select>
-        </div>
-
-        <div class="service-group">
-            <label class="group-title">Complementos</label>
-            <div class="checkbox-container">
-                <label class="checkbox-item"><input type="checkbox" class="extra" value="100" data-time="15" data-desc="Mani Rusa" onchange="ejecutarCalculo()"><span class="checkbox-label">Manicura Rusa</span><span class="checkbox-price">$100</span></label>
-                <label class="checkbox-item"><input type="checkbox" class="extra" value="100" data-time="80" data-desc="Retiro" onchange="ejecutarCalculo()"><span class="checkbox-label">Retiro de material</span><span class="checkbox-price">$100</span></label>
-            </div>
-        </div>
-
-        <div class="results-box">
-            <span class="total-label">Inversión Estimada</span>
-            <div class="total-amount" id="total">$0.00</div>
-            <div class="time-estimate" id="tiempo">Tiempo estimado: 0 min</div>
-        </div>
-
-        <a href="#" id="btnWsp" class="btn-whatsapp" target="_blank">Agendar Cita</a>
-        
-        <p class="footer-disclaimer">
-            * Los tiempos son aproximados y pueden variar por factores ajenos al servicio. Por higiene, no se atienden uñas con hongos, enterradas o pacientes diabéticos.
-        </p>
-    </div>
-</div>
-
-<script>
-    function activarCalculadora() {
-        document.getElementById('contenido-calculadora').style.display = "block";
-        ejecutarCalculo();
-    }
-
-    function ejecutarCalculo() {
-        let total = 0;
-        let tiempoTotal = 0;
-        let lista = [];
-
-        // Selectores
-        ['base', 'largo'].forEach(id => {
-            const el = document.getElementById(id);
-            const opt = el.options[el.selectedIndex];
-            if (parseInt(el.value) > 0 || opt.getAttribute('data-time') > 0) {
-                total += parseInt(el.value);
-                tiempoTotal += parseInt(opt.getAttribute('data-time'));
-                if(opt.getAttribute('data-desc')) lista.push(opt.getAttribute('data-desc'));
-            }
-        });
-
-        // Checkboxes
-        document.querySelectorAll('.extra:checked').forEach(cb => {
-            total += parseInt(cb.value);
-            tiempoTotal += parseInt(cb.getAttribute('data-time'));
-            lista.push(cb.getAttribute('data-desc'));
-        });
-
-        document.getElementById('total').innerText = "$" + total + ".00";
-        document.getElementById('tiempo').innerText = "Tiempo estimado: ~" + tiempoTotal + " min";
-
-        const msj = encodeURIComponent("¡Hola Dulce! 💅 Cotización: " + lista.join(", ") + ". Total: $" + total + " (aprox " + tiempoTotal + " min)");
-        document.getElementById('btnWsp').href = "https://wa.me/5215521969219?text=" + msj;
-    }
-</script>
-
-</body>
-</html>
