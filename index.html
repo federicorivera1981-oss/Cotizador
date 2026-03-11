@@ -25,25 +25,25 @@
         .step-indicator.active { background-color: #C7747B; color: white; transform: scale(1.1); }
         .step-indicator.completed { background-color: #4A443F; color: white; }
 
+        .btn-option {
+            border: 2px solid #F3F4F6;
+            transition: all 0.2s;
+            text-align: left;
+        }
+        .btn-option.selected {
+            border-color: #C7747B;
+            background-color: #FDF5F6;
+        }
+
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Estilo para los botones de técnica tipo el video */
-        .tech-card {
-            border: 2px solid #F3F4F6;
-            transition: all 0.2s;
-        }
-        .tech-card.selected {
-            border-color: #C7747B;
-            background-color: #FDF5F6;
-        }
     </style>
 </head>
 <body class="h-full font-body bg-[#F9F7F2] text-[#4A443F]">
-    <div id="app" class="h-full overflow-auto">
+    <div id="app" class="h-full overflow-auto pb-10">
         <div class="max-w-xl mx-auto px-4 py-8">
             
             <header class="text-center mb-6 fade-in">
@@ -75,101 +75,122 @@
             </section>
 
             <section id="section-2" class="hidden fade-in">
-                <h2 class="font-title text-xl text-center mb-6">Selecciona la base</h2>
-                <div class="space-y-3">
+                <h2 class="font-title text-xl text-center mb-6">Selecciona la Técnica</h2>
+                
+                <div class="space-y-6">
                     <div class="bg-white p-5 rounded-3xl card-shadow">
-                        <label class="block text-xs uppercase tracking-widest text-gray-400 mb-3 font-bold">Geles y Acrílicos</label>
-                        <select id="main-tech" onchange="updateCalculo()" class="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-pink-200">
-                            <option value="0" data-time="0">Seleccionar servicio...</option>
-                            <optgroup label="Geles">
-                                <option value="200" data-time="60">Rubber - $200</option>
-                                <option value="150" data-time="60">Gel Semipermanente - $150</option>
-                            </optgroup>
-                            <optgroup label="Acrílicos (Largo base #2)">
-                                <option value="200" data-time="90">Acrílico con Tip - $200</option>
-                                <option value="250" data-time="100">Escultural - $250</option>
-                            </optgroup>
-                            <optgroup label="Mantenimiento">
-                                <option value="150" data-time="80">Retoque Acrílico - $150</option>
-                                <option value="100" data-time="80">Retoque Gel - $100</option>
-                            </optgroup>
-                        </select>
+                        <label class="block text-xs uppercase tracking-widest text-gray-400 mb-4 font-bold">Geles</label>
+                        <div class="grid grid-cols-1 gap-2">
+                            <button onclick="toggleService(this, 200, 60, 'Rubber')" class="btn-option p-4 rounded-2xl flex justify-between items-center">
+                                <span class="text-sm">Rubber</span><span class="text-xs font-bold dusty-rose-text">$200</span>
+                            </button>
+                            <button onclick="toggleService(this, 100, 40, 'Calcio')" class="btn-option p-4 rounded-2xl flex justify-between items-center">
+                                <span class="text-sm">Calcio Cristal</span><span class="text-xs font-bold dusty-rose-text">$100</span>
+                            </button>
+                            <button onclick="toggleService(this, 150, 60, 'Gel Semipermanente')" class="btn-option p-4 rounded-2xl flex justify-between items-center">
+                                <span class="text-sm">Gel Semipermanente</span><span class="text-xs font-bold dusty-rose-text">$150</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-3xl card-shadow">
+                        <label class="block text-xs uppercase tracking-widest text-gray-400 mb-4 font-bold">Acrílicas (Base #2)</label>
+                        <div class="grid grid-cols-1 gap-2">
+                            <button onclick="toggleService(this, 200, 90, 'Acrílico Tip')" class="btn-option p-4 rounded-2xl flex justify-between items-center">
+                                <span class="text-sm">Con Tip</span><span class="text-xs font-bold dusty-rose-text">$200</span>
+                            </button>
+                            <button onclick="toggleService(this, 250, 100, 'Escultural')" class="btn-option p-4 rounded-2xl flex justify-between items-center">
+                                <span class="text-sm">Escultural</span><span class="text-xs font-bold dusty-rose-text">$250</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-3xl card-shadow">
+                        <label class="block text-xs uppercase tracking-widest text-gray-400 mb-4 font-bold">Mantenimiento y Otros</label>
+                        <div class="grid grid-cols-1 gap-2">
+                            <button onclick="toggleService(this, 150, 80, 'Retoque Acr')" class="btn-option p-4 rounded-2xl flex justify-between items-center">
+                                <span class="text-sm">Retoque Acrílico</span><span class="text-xs font-bold dusty-rose-text">$150</span>
+                            </button>
+                            <button onclick="toggleService(this, 100, 80, 'Retiro')" class="btn-option p-4 rounded-2xl flex justify-between items-center">
+                                <span class="text-sm">Retiro de material</span><span class="text-xs font-bold dusty-rose-text">$100</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
                 <div class="flex gap-3 mt-8">
                     <button onclick="goTo(1)" class="flex-1 py-4 text-gray-400 font-medium text-sm">← Volver</button>
                     <button onclick="goTo(3)" class="flex-[2] py-4 dusty-rose text-white rounded-2xl font-bold shadow-lg shadow-pink-200">Siguiente paso</button>
                 </div>
             </section>
 
-            <section id="section-3" class="hidden fade-in text-left">
-                <div class="bg-white p-6 rounded-3xl card-shadow mb-6">
+            <section id="section-3" class="hidden fade-in">
+                <div class="bg-white p-6 rounded-3xl card-shadow mb-6 text-left">
                     <h3 class="font-title text-lg dusty-rose-text mb-4">Diseños y SPA</h3>
                     <div class="space-y-4">
                         <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-sm font-medium">Efectos ($5 uña)</p>
-                                <p class="text-[10px] text-gray-400">+5 min por uña</p>
-                            </div>
-                            <select class="dec-qty p-2 bg-gray-50 rounded-lg text-sm" data-price="5" data-time="5" onchange="updateCalculo()">
-                                <option value="0">0</option><option value="2">2</option><option value="4">4</option><option value="10">Set (10)</option>
+                            <div><p class="text-sm font-medium">Efectos ($5 uña)</p></div>
+                            <select class="dec-qty p-2 bg-gray-50 rounded-lg text-sm border-none" data-price="5" data-time="5" onchange="updateCalculo()">
+                                <option value="0">0</option><option value="2">2</option><option value="4">4</option><option value="10">10</option>
                             </select>
                         </div>
                         <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-sm font-medium">Art / French ($10 uña)</p>
-                                <p class="text-[10px] text-gray-400">+10 min por uña</p>
-                            </div>
-                            <select class="dec-qty p-2 bg-gray-50 rounded-lg text-sm" data-price="10" data-time="10" onchange="updateCalculo()">
-                                <option value="0">0</option><option value="2">2</option><option value="4">4</option><option value="10">Set (10)</option>
+                            <div><p class="text-sm font-medium">Art / French ($10 uña)</p></div>
+                            <select class="dec-qty p-2 bg-gray-50 rounded-lg text-sm border-none" data-price="10" data-time="10" onchange="updateCalculo()">
+                                <option value="0">0</option><option value="2">2</option><option value="4">4</option><option value="10">10</option>
                             </select>
                         </div>
                         <hr class="border-gray-50">
-                        <label class="flex justify-between items-center cursor-pointer">
-                            <span class="text-sm font-medium">Manicura Rusa ($100)</span>
-                            <input type="checkbox" class="spa-check" value="100" data-time="20" data-name="Mani Rusa" onchange="updateCalculo()" class="accent-pink-500">
-                        </label>
-                        <label class="flex justify-between items-center cursor-pointer">
+                        <label class="flex justify-between items-center cursor-pointer p-1">
                             <span class="text-sm font-medium">Pedicure ($250)</span>
-                            <input type="checkbox" class="spa-check" value="250" data-time="45" data-name="Pedicure" onchange="updateCalculo()" class="accent-pink-500">
+                            <input type="checkbox" class="spa-check" value="250" data-time="45" data-name="Pedicure" onchange="updateCalculo()">
                         </label>
                     </div>
                 </div>
 
-                <div class="bg-[#4A443F] text-white p-6 rounded-3xl card-shadow relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -mr-10 -mt-10"></div>
-                    <p class="text-[10px] uppercase tracking-widest opacity-60 mb-4 text-center">Resumen de Inversión</p>
-                    <div id="resumen-lista" class="space-y-2 mb-6 text-sm">
-                        </div>
+                <div class="bg-[#4A443F] text-white p-6 rounded-3xl shadow-xl relative overflow-hidden">
+                    <div class="text-center mb-4"><span class="text-[10px] opacity-40 uppercase tracking-widest">Resumen de Servicio</span></div>
+                    <div id="resumen-lista" class="space-y-2 mb-6 text-sm"></div>
                     <div class="border-t border-white/10 pt-4 flex justify-between items-end">
                         <div>
-                            <p class="text-[10px] opacity-60 uppercase">Total Estimado</p>
-                            <p id="precio-final" class="text-3xl font-title font-bold">$0</p>
+                            <p class="text-[10px] opacity-60">TOTAL ESTIMADO</p>
+                            <p id="precio-final" class="text-3xl font-title font-bold text-[#E8C4C7]">$0</p>
                         </div>
-                        <p id="tiempo-final" class="text-xs italic opacity-60">~0 min</p>
+                        <p id="tiempo-final" class="text-xs italic opacity-40">~0 min</p>
                     </div>
                 </div>
 
-                <button onclick="enviar()" class="w-full mt-6 py-5 bg-[#25D366] text-white font-bold rounded-2xl shadow-xl flex items-center justify-center gap-3 hover:scale-[1.02] transition-transform">
+                <button onclick="enviar()" class="w-full mt-6 py-5 bg-[#25D366] text-white font-bold rounded-2xl shadow-xl hover:scale-[1.02] transition-transform">
                     Confirmar por WhatsApp
                 </button>
-                <button onclick="goTo(2)" class="w-full mt-4 text-gray-400 text-xs">← Modificar selección</button>
+                <button onclick="goTo(2)" class="w-full mt-4 text-gray-400 text-xs text-center">← Modificar técnicas</button>
             </section>
         </div>
     </div>
 
     <script>
         let cotizacion = { tipo: '', total: 0, tiempo: 0, items: [] };
+        let selectedServices = [];
 
         function selectType(val) {
             cotizacion.tipo = val;
             goTo(2);
         }
 
+        function toggleService(btn, price, time, name) {
+            btn.classList.toggle('selected');
+            const index = selectedServices.findIndex(s => s.name === name);
+            if (index > -1) {
+                selectedServices.splice(index, 1);
+            } else {
+                selectedServices.push({ price, time, name });
+            }
+            updateCalculo();
+        }
+
         function goTo(step) {
             document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
             document.getElementById(`section-${step}`).classList.remove('hidden');
-            
             document.querySelectorAll('.step-indicator').forEach((si, i) => {
                 si.classList.toggle('active', i+1 === step);
                 si.classList.toggle('completed', i+1 < step);
@@ -180,40 +201,31 @@
         function updateCalculo() {
             let total = 0; let tiempo = 0; let items = [cotizacion.tipo];
             
-            const tech = document.getElementById('main-tech');
-            const opt = tech.options[tech.selectedIndex];
-            if(parseInt(tech.value) > 0) {
-                total += parseInt(tech.value);
-                tiempo += parseInt(opt.dataset.time);
-                items.push(opt.text.split('-')[0].trim());
-            }
+            selectedServices.forEach(s => {
+                total += s.price; tiempo += s.time; items.push(s.name);
+            });
 
             document.querySelectorAll('.dec-qty').forEach(s => {
                 let q = parseInt(s.value);
                 if(q > 0) {
-                    total += (q * s.dataset.price);
-                    tiempo += (q * s.dataset.time);
+                    total += (q * s.dataset.price); tiempo += (q * s.dataset.time);
                     items.push(q + " diseño(s)");
                 }
             });
 
             document.querySelectorAll('.spa-check:checked').forEach(c => {
-                total += parseInt(c.value);
-                tiempo += parseInt(c.dataset.time);
+                total += parseInt(c.value); tiempo += parseInt(c.dataset.time);
                 items.push(c.dataset.name);
             });
 
             cotizacion.total = total; cotizacion.tiempo = tiempo; cotizacion.items = items;
-            
             document.getElementById('precio-final').innerText = `$${total}`;
             document.getElementById('tiempo-final').innerText = `~${tiempo} min`;
-            
-            const resumenDiv = document.getElementById('resumen-lista');
-            resumenDiv.innerHTML = items.map(i => `<div class="flex justify-between opacity-90"><span>${i}</span></div>`).join('');
+            document.getElementById('resumen-lista').innerHTML = items.map(i => `<div class="flex justify-between border-b border-white/5 pb-1"><span class="opacity-80">${i}</span></div>`).join('');
         }
 
         function enviar() {
-            const text = encodeURIComponent("¡Hola Dulce! Mi cotización: " + cotizacion.items.join(", ") + ". Total: $" + cotizacion.total + " (~" + cotizacion.tiempo + " min)");
+            const text = encodeURIComponent("¡Hola Dulce! Cotización: " + cotizacion.items.join(", ") + ". Total: $" + cotizacion.total + " (~" + cotizacion.tiempo + " min)");
             window.open(`https://wa.me/5215521969219?text=${text}`, "_blank");
         }
     </script>
