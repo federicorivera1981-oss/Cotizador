@@ -221,9 +221,8 @@
         document.getElementById('total').innerText = "$" + t + ".00";
         document.getElementById('tiempo').innerText = "Tiempo total estimado: ~" + m + " min";
         
-        // CORRECCIÓN DEL EMOJI PARA WHATSAPP
-        const emojiUña = "%F0%9F%92%85"; // Código seguro para 💅
-        const msg = encodeURIComponent("¡Hola Dulce! ") + emojiUña + encodeURIComponent(" Mi cotización: " + d.join(", ") + ". Total: $" + t + " (~" + m + " min)");
+        // MENSAJE DE WHATSAPP SIN EMOJIS
+        const msg = encodeURIComponent("Hola Dulce! Mi cotización: " + d.join(", ") + ". Total: $" + t + " (~" + m + " min)");
         document.getElementById('btnWsp').href = "https://wa.me/5215521969219?text=" + msg;
     }
 </script>
