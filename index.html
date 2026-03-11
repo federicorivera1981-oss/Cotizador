@@ -1,230 +1,224 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador - Nails by Dul</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --beige-fondo: #F9F7F2;
-            --crema-card: #FFFFFF;
-            --cafe-texto: #4A443F;
-            --dorado-acento: #D4A373;
-            --borde: #E5E1D8;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful Nails by Dul - Cotizador</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    .font-title { font-family: 'Playfair Display', serif; }
+    .font-script { font-family: 'Great Vibes', cursive; }
+    .font-body { font-family: 'Lato', sans-serif; }
+    
+    .dusty-rose { background-color: #C7747B; }
+    .dusty-rose-text { color: #C7747B; }
+    .dusty-rose-light { background-color: #F9F7F2; }
+    
+    .card-shadow { box-shadow: 0 4px 20px rgba(199, 116, 123, 0.1); }
+    
+    .option-card { transition: all 0.3s ease; border: 2px solid transparent; cursor: pointer; }
+    .option-card.selected { border-color: #C7747B; background-color: #FDFCFB; }
+    
+    .step-indicator.active { background-color: #C7747B; color: white; }
+    .step-indicator.completed { background-color: #4A443F; color: white; }
+    
+    .logo-oval {
+      width: 180px; height: 100px; object-fit: cover; border-radius: 100px;
+      border: 1px solid #E5E1D8; display: inline-block;
+    }
 
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--beige-fondo); color: var(--cafe-texto); margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { background: var(--crema-card); padding: 40px 25px; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); max-width: 480px; width: 100%; text-align: center; border: 1px solid var(--borde); }
-        .logo { width: 180px; height: 100px; object-fit: cover; border-radius: 100px; margin-bottom: 20px; border: 1px solid var(--borde); display: inline-block; }
-        
-        h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 5px; letter-spacing: 1px; }
-        .step-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--dorado-acento); margin-bottom: 25px; display: block; }
-        
-        .radio-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 25px; flex-wrap: wrap; }
-        .radio-card { flex: 1; min-width: 130px; cursor: pointer; }
-        .radio-card input { display: none; }
-        .card-content { border: 1px solid var(--borde); padding: 15px 5px; transition: 0.3s; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; line-height: 1.2; border-radius: 50px; }
-        .radio-card input:checked + .card-content { background: var(--cafe-texto); color: white; border-color: var(--cafe-texto); }
-
-        #seccion-tecnicas, #contenido-final { display: none; }
-
-        .subcat-content { display: none; text-align: left; margin-top: 15px; border-top: 1px solid var(--borde); padding-top: 10px; }
-        
-        .service-group { text-align: left; margin-bottom: 25px; }
-        label.group-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; margin-bottom: 12px; display: block; }
-
-        .checkbox-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--borde); cursor: pointer; }
-        .checkbox-item input { margin-right: 15px; accent-color: var(--cafe-texto); width: 18px; height: 18px; }
-        .checkbox-label { flex-grow: 1; font-size: 0.85rem; font-weight: 300; }
-        .item-details { display: flex; flex-direction: column; text-align: right; }
-        .checkbox-price { font-size: 0.85rem; font-weight: 600; }
-        .checkbox-time { font-size: 0.65rem; color: var(--dorado-acento); font-style: italic; }
-        
-        .decorado-item { display: grid; grid-template-columns: 1fr 85px; gap: 10px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--borde); }
-        .decorado-label-container { text-align: left; }
-        .decorado-label { font-size: 0.85rem; font-weight: 400; display: block; }
-        .decorado-meta { font-size: 0.65rem; color: var(--dorado-acento); font-style: italic; }
-        .qty-select { padding: 8px; font-size: 0.75rem; width: 75px; border: 1px solid var(--borde); background-color: var(--beige-fondo); appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%234A443F%22%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 5px center; }
-
-        .results-box { margin-top: 30px; padding: 25px 0; border-top: 2px solid var(--cafe-texto); }
-        .total-amount { font-family: 'Playfair Display', serif; font-size: 2.8rem; }
-        .time-estimate { font-size: 0.85rem; color: var(--dorado-acento); font-style: italic; margin-top: 5px; }
-
-        .btn-whatsapp { display: block; margin-top: 25px; background-color: var(--cafe-texto); color: white; padding: 20px; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; text-align: center; }
-        .footer-note { font-size: 0.6rem; color: #aaa; margin-top: 20px; line-height: 1.4; text-align: center; }
-        .nota-especial { font-size: 0.65rem; color: var(--dorado-acento); font-style: italic; margin-top: -5px; margin-bottom: 10px; display: block; }
-    </style>
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body>
+<body class="h-full font-body bg-[#F9F7F2] text-[#4A443F]">
+  <div id="app" class="h-full overflow-auto">
+    <div class="w-full min-h-full px-4 py-8">
+      
+      <header class="text-center mb-8 fade-in">
+        <img src="logo.png" alt="Logo" class="logo-oval mb-4">
+        <h1 class="font-title text-3xl md:text-4xl dusty-rose-text font-semibold">Beautiful Nails</h1>
+        <p class="font-script text-2xl text-gray-600 mt-1">by Dul</p>
+      </header>
 
-<div class="container">
-    <img src="logo.png" alt="Logo" class="logo">
-    <h2>Beautiful Nails</h2>
-    <span class="step-label">¿Qué realizaremos hoy?</span>
+      <div class="flex justify-center items-center gap-2 mb-8 fade-in">
+        <div id="step-1" class="step-indicator active w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium bg-gray-200">1</div>
+        <div class="w-8 h-0.5 bg-gray-200"></div>
+        <div id="step-2" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium bg-gray-200">2</div>
+        <div class="w-8 h-0.5 bg-gray-200"></div>
+        <div id="step-3" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium bg-gray-200">3</div>
+      </div>
 
-    <div class="radio-group">
-        <label class="radio-card">
-            <input type="radio" name="tipo_servicio" value="Aplicación Nueva" onclick="mostrarSeccionTecnicas()">
-            <div class="card-content">✨ Nueva Aplicación</div>
-        </label>
-        <label class="radio-card">
-            <input type="radio" name="tipo_servicio" value="Retoque" onclick="mostrarSeccionTecnicas()">
-            <div class="card-content">💅 Solo Retoque</div>
-        </label>
-    </div>
-
-    <div id="seccion-tecnicas">
-        <span class="step-label">Selecciona la Técnica</span>
-        <div class="radio-group">
-            <label class="radio-card"><input type="radio" name="subcat" value="geles" onclick="mostrarSubcat('geles')"><div class="card-content">Geles</div></label>
-            <label class="radio-card"><input type="radio" name="subcat" value="acrilicos" onclick="mostrarSubcat('acrilicos')"><div class="card-content">Acrílicas</div></label>
-            <label class="radio-card"><input type="radio" name="subcat" value="mantenimiento" onclick="mostrarSubcat('mantenimiento')"><div class="card-content">Mantenimiento</div></label>
-            <label class="radio-card"><input type="radio" name="subcat" value="otros" onclick="mostrarSubcat('otros')"><div class="card-content">Otros</div></label>
-        </div>
-
-        <div id="opciones-geles" class="subcat-content">
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="200" data-time="60" data-desc="Rubber" onchange="calcularTodo()"><span class="checkbox-label">Rubber</span><div class="item-details"><span class="checkbox-price">$200</span><span class="checkbox-time">60 min</span></div></label>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="100" data-time="40" data-desc="Calcio" onchange="calcularTodo()"><span class="checkbox-label">Calcio Cristal</span><div class="item-details"><span class="checkbox-price">$100</span><span class="checkbox-time">40 min</span></div></label>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="150" data-time="60" data-desc="Gel Manos" onchange="calcularTodo()"><span class="checkbox-label">Gel Semipermanente Manos</span><div class="item-details"><span class="checkbox-price">$150</span><span class="checkbox-time">60 min</span></div></label>
-        </div>
-
-        <div id="opciones-acrilicos" class="subcat-content">
-            <span class="step-label" style="text-align:left; margin-bottom:5px; font-size:0.6rem;">Acrílico con Tip</span>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="200" data-time="90" data-desc="Tip #2" onchange="calcularTodo()"><span class="checkbox-label">Hasta número 2</span><div class="item-details"><span class="checkbox-price">$200</span><span class="checkbox-time">90 min</span></div></label>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="250" data-time="100" data-desc="Tip #3" onchange="calcularTodo()"><span class="checkbox-label">Número 3</span><div class="item-details"><span class="checkbox-price">$250</span><span class="checkbox-time">100 min</span></div></label>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="300" data-time="110" data-desc="Tip #4" onchange="calcularTodo()"><span class="checkbox-label">Número 4</span><div class="item-details"><span class="checkbox-price">$300</span><span class="checkbox-time">110 min</span></div></label>
-            <span class="step-label" style="text-align:left; margin:10px 0 5px; font-size:0.6rem;">Acrílico Escultural</span>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="250" data-time="100" data-desc="Escultural #2" onchange="calcularTodo()"><span class="checkbox-label">Hasta número 2</span><div class="item-details"><span class="checkbox-price">$250</span><span class="checkbox-time">100 min</span></div></label>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="300" data-time="110" data-desc="Escultural #3" onchange="calcularTodo()"><span class="checkbox-label">Número 3</span><div class="item-details"><span class="checkbox-price">$300</span><span class="checkbox-time">110 min</span></div></label>
-        </div>
-
-        <div id="opciones-mantenimiento" class="subcat-content">
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="150" data-time="80" data-desc="Retoque Acr" onchange="calcularTodo()"><span class="checkbox-label">Retoque Acrílico</span><div class="item-details"><span class="checkbox-price">$150</span><span class="checkbox-time">80 min</span></div></label>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="100" data-time="80" data-desc="Retoque Gel" onchange="calcularTodo()"><span class="checkbox-label">Retoque Gel</span><div class="item-details"><span class="checkbox-price">$100</span><span class="checkbox-time">80 min</span></div></label>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="50" data-time="40" data-desc="Cambio Forma" onchange="calcularTodo()"><span class="checkbox-label">Cambio de forma</span><div class="item-details"><span class="checkbox-price">$50</span><span class="checkbox-time">40 min</span></div></label>
-        </div>
-
-        <div id="opciones-otros" class="subcat-content">
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="200" data-time="90" data-desc="Polygel" onchange="calcularTodo()"><span class="checkbox-label">Polygel (Acrígel)</span><div class="item-details"><span class="checkbox-price">$200</span><span class="checkbox-time">90 min</span></div></label>
-            <label class="checkbox-item"><input type="checkbox" class="calc-item" value="100" data-time="80" data-desc="Retiro" onchange="calcularTodo()"><span class="checkbox-label">Retiro de material</span><div class="item-details"><span class="checkbox-price">$100</span><span class="checkbox-time">80 min</span></div></label>
-        </div>
-    </div>
-
-    <div id="contenido-final">
-        <div class="service-group" style="margin-top: 35px; border-top: 1px solid var(--borde); padding-top: 25px;">
-            <label class="group-title">Efectos y Decorado (Por uña)</label>
-            
-            <div class="decorado-item">
-                <div class="decorado-label-container">
-                    <span class="decorado-label">Espejo / Aurora / Stickers / Glitter</span>
-                    <span class="decorado-meta">$5 c/u • +3 min</span>
-                </div>
-                <select class="qty-select decorado-qty" data-price="5" data-time="3" onchange="calcularTodo()">
-                    <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="4">4</option><option value="10">Set (10)</option>
-                </select>
-            </div>
-
-            <div class="decorado-item">
-                <div class="decorado-label-container">
-                    <span class="decorado-label">French / Carey / Cat Eye / Art Simple</span>
-                    <span class="decorado-meta">$10 c/u • +8 min</span>
-                </div>
-                <select class="qty-select decorado-qty" data-price="10" data-time="8" onchange="calcularTodo()">
-                    <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="4">4</option><option value="10">Set (10)</option>
-                </select>
-            </div>
-
-            <div class="decorado-item">
-                <div class="decorado-label-container">
-                    <span class="decorado-label">French Doble / Cristales M</span>
-                    <span class="decorado-meta">$15 c/u • +10 min</span>
-                </div>
-                <select class="qty-select decorado-qty" data-price="15" data-time="10" onchange="calcularTodo()">
-                    <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="4">4</option><option value="10">Set (10)</option>
-                </select>
-            </div>
-
-            <div class="decorado-item">
-                <div class="decorado-label-container">
-                    <span class="decorado-label">Uña completa Cristales (Largo 1-3)</span>
-                    <span class="decorado-meta">$30 c/u • +20 min</span>
-                </div>
-                <select class="qty-select decorado-qty" data-price="30" data-time="20" onchange="calcularTodo()">
-                    <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-                </select>
-            </div>
-
-            <div class="decorado-item" style="border-bottom:none;">
-                <div class="decorado-label-container">
-                    <span class="decorado-label">Uña completa Cristales (Largo 4-10)</span>
-                    <span class="decorado-meta">$50 c/u • +30 min</span>
-                </div>
-                <select class="qty-select decorado-qty" data-price="50" data-time="30" onchange="calcularTodo()">
-                    <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="service-group">
-            <label class="group-title">Servicios SPA</label>
-            <div class="checkbox-container">
-                <label class="checkbox-item"><input type="checkbox" class="calc-item" value="100" data-time="20" data-desc="Mani Rusa" onchange="calcularTodo()"><span class="checkbox-label">Manicura Rusa</span><div class="item-details"><span class="checkbox-price">$100</span><span class="checkbox-time">20 min</span></div></label>
-                <label class="checkbox-item"><input type="checkbox" class="calc-item" value="250" data-time="45" data-desc="Pedicure" onchange="calcularTodo()"><span class="checkbox-label">Pedicure (1 color)</span><div class="item-details"><span class="checkbox-price">$250</span><span class="checkbox-time">45 min</span></div></label>
-                <label class="checkbox-item"><input type="checkbox" class="calc-item" value="400" data-time="60" data-desc="Spa Pedi" onchange="calcularTodo()"><span class="checkbox-label">Spa Pedicure (Completo)</span><div class="item-details"><span class="checkbox-price">$400</span><span class="checkbox-time">60 min</span></div></label>
-            </div>
-        </div>
-
-        <div class="results-box">
-            <span style="font-size:0.65rem; text-transform:uppercase; letter-spacing:2px;">Inversión Estimada</span>
-            <div class="total-amount" id="total">$0.00</div>
-            <div class="time-estimate" id="tiempo">Tiempo total estimado: ~0 min</div>
-        </div>
-
-        <a href="#" id="btnWsp" class="btn-whatsapp" target="_blank">Agendar por WhatsApp</a>
-        <p class="footer-note">* Tiempos aproximados sujetos a variación. No se atienden uñas con hongos o pie diabético.</p>
-    </div>
-</div>
-
-<script>
-    function mostrarSeccionTecnicas() {
-        document.getElementById('seccion-tecnicas').style.display = 'block';
-        document.getElementById('contenido-final').style.display = 'block';
-        calcularTodo();
-    }
-
-    function mostrarSubcat(subcat) {
-        document.querySelectorAll('.subcat-content').forEach(div => div.style.display = 'none');
-        document.getElementById('opciones-' + subcat).style.display = 'block';
-    }
-
-    function calcularTodo() {
-        let t = 0; let m = 0; let d = [];
-        const r = document.querySelector('input[name="tipo_servicio"]:checked');
-        if(r) d.push(r.value);
-
-        document.querySelectorAll('.calc-item:checked').forEach(c => {
-            t += parseInt(c.value);
-            m += parseInt(c.getAttribute('data-time'));
-            d.push(c.getAttribute('data-desc'));
-        });
-
-        document.querySelectorAll('.decorado-qty').forEach(s => {
-            let cant = parseInt(s.value);
-            if(cant > 0) {
-                t += (cant * parseInt(s.getAttribute('data-price')));
-                m += (cant * parseInt(s.getAttribute('data-time')));
-                d.push(cant + " diseño(s)");
-            }
-        });
-
-        document.getElementById('total').innerText = "$" + t + ".00";
-        document.getElementById('tiempo').innerText = "Tiempo total estimado: ~" + m + " min";
+      <main class="max-w-xl mx-auto">
         
-        // MENSAJE DE WHATSAPP SIN EMOJIS
-        const msg = encodeURIComponent("Hola Dulce! Mi cotización: " + d.join(", ") + ". Total: $" + t + " (~" + m + " min)");
-        document.getElementById('btnWsp').href = "https://wa.me/5215521969219?text=" + msg;
+        <section id="section-1" class="fade-in">
+          <h2 class="font-title text-xl text-center mb-6">¿Qué servicio necesitas hoy?</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div onclick="selectServiceType('Nueva Aplicación')" class="option-card bg-white rounded-2xl p-6 text-center card-shadow" id="type-nueva">
+              <span class="text-3xl block mb-2">✨</span>
+              <h3 class="font-title text-lg">Nueva Aplicación</h3>
+            </div>
+            <div onclick="selectServiceType('Retoque')" class="option-card bg-white rounded-2xl p-6 text-center card-shadow" id="type-retoque">
+              <span class="text-3xl block mb-2">💅</span>
+              <h3 class="font-title text-lg">Retoque</h3>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-2" class="hidden fade-in">
+          <h2 class="font-title text-xl text-center mb-6">Selecciona la técnica</h2>
+          <div class="space-y-4">
+            <div class="bg-white rounded-2xl p-5 card-shadow">
+              <h3 class="font-title text-lg dusty-rose-text mb-4">Geles y Acrílicos</h3>
+              <select id="tecnica-select" class="w-full p-3 border-2 border-gray-100 rounded-xl font-body" onchange="updateCalculo()">
+                <option value="0" data-time="0">Seleccionar...</option>
+                <optgroup label="Geles">
+                  <option value="200" data-time="60">Rubber - $200</option>
+                  <option value="100" data-time="40">Calcio Cristal - $100</option>
+                  <option value="150" data-time="60">Gel Semipermanente Manos - $150</option>
+                </optgroup>
+                <optgroup label="Acrílico con Tip">
+                  <option value="200" data-time="90">Hasta #2 - $200</option>
+                  <option value="250" data-time="100">Número #3 - $250</option>
+                  <option value="300" data-time="110">Número #4 - $300</option>
+                </optgroup>
+                <optgroup label="Mantenimiento">
+                  <option value="150" data-time="80">Retoque Acrílico - $150</option>
+                  <option value="100" data-time="80">Retoque Gel - $100</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+          <div class="flex gap-3 mt-6">
+            <button onclick="goToStep(1)" class="flex-1 py-3 text-gray-500 border border-gray-200 rounded-xl">← Volver</button>
+            <button onclick="goToStep(3)" class="flex-1 py-3 dusty-rose text-white font-medium rounded-xl">Continuar →</button>
+          </div>
+        </section>
+
+        <section id="section-3" class="hidden fade-in">
+          <h2 class="font-title text-xl text-center mb-6">Complementos y SPA</h2>
+          
+          <div class="bg-white rounded-2xl p-5 card-shadow mb-4 text-left">
+            <h3 class="font-title text-base dusty-rose-text mb-4">Diseño por uña</h3>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <span class="text-sm">Efectos ($5 uña)</span>
+                    <select class="decorado-qty p-1 border rounded" data-price="5" data-time="5" onchange="updateCalculo()">
+                        <option value="0">0</option><option value="2">2</option><option value="10">Set (10)</option>
+                    </select>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm">Art / French ($10 uña)</span>
+                    <select class="decorado-qty p-1 border rounded" data-price="10" data-time="10" onchange="updateCalculo()">
+                        <option value="0">0</option><option value="2">2</option><option value="10">Set (10)</option>
+                    </select>
+                </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-5 card-shadow mb-6 text-left">
+            <h3 class="font-title text-base dusty-rose-text mb-4">Servicios SPA</h3>
+            <div class="space-y-2">
+                <label class="flex justify-between items-center p-2 border rounded-xl cursor-pointer">
+                    <div class="flex items-center"><input type="checkbox" class="spa-check" value="100" data-time="20" data-desc="Mani Rusa" onchange="updateCalculo()"><span class="ml-2 text-sm">Manicura Rusa</span></div>
+                    <span class="text-sm font-semibold">$100</span>
+                </label>
+                <label class="flex justify-between items-center p-2 border rounded-xl cursor-pointer">
+                    <div class="flex items-center"><input type="checkbox" class="spa-check" value="250" data-time="45" data-desc="Pedicure" onchange="updateCalculo()"><span class="ml-2 text-sm">Pedicure</span></div>
+                    <span class="text-sm font-semibold">$250</span>
+                </label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 card-shadow border-2 border-pink-100">
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-title text-gray-800">Total Estimado</span>
+                <span id="total-price" class="font-title text-2xl dusty-rose-text font-bold">$0</span>
+            </div>
+            <p id="total-time" class="text-xs text-gray-400 italic text-right">Tiempo: ~0 min</p>
+          </div>
+
+          <button onclick="enviarWhatsApp()" class="w-full mt-6 py-4 bg-[#25D366] text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+            Agendar por WhatsApp
+          </button>
+          
+          <button onclick="goToStep(2)" class="mt-4 w-full text-gray-400 text-sm">← Volver a técnicas</button>
+        </section>
+
+      </main>
+
+      <footer class="text-center mt-12 text-gray-400 text-xs">
+        <p>* Los tiempos son aproximados y pueden variar.</p>
+        <p class="mt-2 font-script text-lg dusty-rose-text">Beautiful Nails by Dul</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    let state = { type: '', total: 0, time: 0, details: [] };
+
+    function selectServiceType(type) {
+      state.type = type;
+      document.getElementById('type-nueva').classList.toggle('selected', type === 'Nueva Aplicación');
+      document.getElementById('type-retoque').classList.toggle('selected', type === 'Retoque');
+      setTimeout(() => goToStep(2), 300);
     }
-</script>
+
+    function goToStep(step) {
+      document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+      document.getElementById(`section-${step}`).classList.remove('hidden');
+      
+      document.querySelectorAll('.step-indicator').forEach((si, i) => {
+        si.classList.toggle('active', i+1 === step);
+        si.classList.toggle('completed', i+1 < step);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateCalculo() {
+      let total = 0; let time = 0; let details = [state.type];
+
+      // Técnica
+      const tec = document.getElementById('tecnica-select');
+      const tecOpt = tec.options[tec.selectedIndex];
+      if(parseInt(tec.value) > 0) {
+        total += parseInt(tec.value);
+        time += parseInt(tecOpt.getAttribute('data-time'));
+        details.push(tecOpt.text.split('-')[0].trim());
+      }
+
+      // Decorados
+      document.querySelectorAll('.decorado-qty').forEach(s => {
+        let q = parseInt(s.value);
+        if(q > 0) {
+          total += (q * parseInt(s.getAttribute('data-price')));
+          time += (q * parseInt(s.getAttribute('data-time')));
+          details.push(q + " uña(s) diseño");
+        }
+      });
+
+      // SPA
+      document.querySelectorAll('.spa-check:checked').forEach(c => {
+        total += parseInt(c.value);
+        time += parseInt(c.getAttribute('data-time'));
+        details.push(c.getAttribute('data-desc'));
+      });
+
+      state.total = total; state.time = time; state.details = details;
+      document.getElementById('total-price').innerText = `$${total}`;
+      document.getElementById('total-time').innerText = `Tiempo: ~${time} min`;
+    }
+
+    function enviarWhatsApp() {
+      const msg = encodeURIComponent("Hola Dulce! Mi cotización: " + state.details.join(", ") + ". Total: $" + state.total + " (~" + state.time + " min)");
+      window.open("https://wa.me/5215521969219?text=" + msg, "_blank");
+    }
+  </script>
 </body>
 </html>
+</html>
+
