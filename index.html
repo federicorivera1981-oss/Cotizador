@@ -41,7 +41,6 @@
         .checkbox-price { font-size: 0.85rem; font-weight: 600; }
         .checkbox-time { font-size: 0.65rem; color: var(--dorado-acento); font-style: italic; }
         
-        /* Ajuste para Decorados Desglosados */
         .decorado-item { display: grid; grid-template-columns: 1fr 85px; gap: 10px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--borde); }
         .decorado-label-container { text-align: left; }
         .decorado-label { font-size: 0.85rem; font-weight: 400; display: block; }
@@ -221,7 +220,10 @@
 
         document.getElementById('total').innerText = "$" + t + ".00";
         document.getElementById('tiempo').innerText = "Tiempo total estimado: ~" + m + " min";
-        const msg = encodeURIComponent("¡Hola Dulce! 💅 Mi cotización: " + d.join(", ") + ". Total: $" + t + " (~" + m + " min)");
+        
+        // CORRECCIÓN DEL EMOJI PARA WHATSAPP
+        const emojiUña = "%F0%9F%92%85"; // Código seguro para 💅
+        const msg = encodeURIComponent("¡Hola Dulce! ") + emojiUña + encodeURIComponent(" Mi cotización: " + d.join(", ") + ". Total: $" + t + " (~" + m + " min)");
         document.getElementById('btnWsp').href = "https://wa.me/5215521969219?text=" + msg;
     }
 </script>
